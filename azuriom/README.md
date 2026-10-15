@@ -1,7 +1,31 @@
-# JangoPay for Azuriom Shop — 1.0.4
+<div align="center">
 
-See [English guide](README_EN.md) / [中文安装说明](README_ZH_CN.md).
+# JangoPay for Azuriom Shop
 
-Version 1.0.4 includes the live authentication, webhook payload, fixed-scale USD and merchant-fee compatibility fixes. The marketplace ZIP places `plugin.json` directly at its root; extract its contents into `plugins/jangopay/` for manual installation.
+Accept USDT and USDC payments in your Azuriom store.
 
-Real Azuriom/Shop integration and one USDT/BSC payment have been verified, with audited recovery and synthetic callback replay. Fresh-order first official callback acceptance remains with the owner before public rollout. See the current [release notes](CHANGELOG.md) and [live validation record](docs/LIVE-COMPAT-20261015.md); older reports describe their respective historical stages.
+[English guide](README_EN.md) · [中文教程](README_ZH_CN.md)
+
+[Download v1.0.4](https://github.com/jangopay/jangopay-integrations/raw/refs/heads/main/downloads/jangopay-azuriom-1.0.4.zip) · [Changelog](CHANGELOG.md) · [Support](https://github.com/jangopay/jangopay-integrations/issues)
+
+</div>
+
+## What it does
+
+- Accept one-time payments for USD-priced Shop orders.
+- Let customers pay using the USDT / USDC networks enabled for your merchant account.
+- Show the payment amount, network and address at checkout.
+- Confirm payments with JangoPay before fulfilling orders through Shop.
+- Review payment status and reconcile orders from your site.
+
+Subscriptions, automatic refunds, payouts and currency conversion are not included.
+
+## Installation
+
+Extract the plugin ZIP into `plugins/jangopay/`, then follow the [English installation guide](README_EN.md) or [中文商户教程](docs/MERCHANT_GUIDE_ZH_CN.md).
+
+> **Acceptance pending:** Before going live, verify a new order completing automatically after its first official payment notification. See [validation details](docs/VALIDATION.md) for the completed tests and remaining checks.
+
+## License
+
+[MIT](LICENSE). See [third-party notices](docs/THIRD_PARTY_LICENSES.md) for included upstream material.

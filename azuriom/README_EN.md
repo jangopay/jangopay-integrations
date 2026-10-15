@@ -1,53 +1,89 @@
-# JangoPay for Azuriom Shop — v1.0.4
+# JangoPay for Azuriom Shop
 
-> **Owner acceptance pending.** Version 1.0.4 includes the four live API/webhook/money compatibility fixes. Real Azuriom/Shop integration and one USDT/BSC payment were verified; the paid order completed after audited recovery and synthetic callback replay. Before public rollout, verify a fresh order completing automatically on its first official callback. Real game-server delivery and production database/multi-node operation remain outside the tested scope. Current results are in [the live validation record](docs/LIVE-COMPAT-20261015.md).
+**English** · [简体中文](README_ZH_CN.md) · [Back to plugins](../README.md)
 
-## Features
+Accept USDT and USDC for one-time, USD-priced orders in Azuriom Shop.
 
-An independent `jangopay` plugin registering a `JangoPay` gateway with Shop. USD-only one-time checkout with USDT/USDC through merchant-confirmed network combinations, private invoice creation, a payment-instruction page, a durable local attempt ledger, merchant-side verification, idempotent delivery claims, administrator manual review and a reconciliation command. No subscription, refund, exchange, payout, or currency conversion capabilities.
+## Requirements
 
-## Installation and configuration
+- An Azuriom site with Shop enabled and HTTPS available.
+- A JangoPay merchant account with the required payment currencies and networks enabled.
+- PHP and extensions that satisfy Azuriom and Shop requirements.
+- OpenSSL CLI available to PHP, with `proc_open()` permitted.
+- Persistent server-side sessions and a cache store that supports atomic locks.
 
-1. Use an Azuriom 1.x / Shop 1.2.x **test** installation and PHP >= 8.1. Confirm OpenSSL and `proc_open` are supported if enabling encrypted webhooks.
-2. Extract the install ZIP into `<azuriom>/plugins/jangopay`. The ZIP contains `plugin.json` **at its root**; do not nest the directory again. Enable the plugin using Azuriom administration.
-3. Configure `JANGOPAY_API_KEY` in the server process environment (not in Shop's plaintext gateway data). Generate an RSA keypair and store the private key outside the public root. Set `JANGOPAY_RSA_PRIVATE_KEY_PATH` to its secure path; register the public key in JangoPay Console → Developer settings → Callback configuration.
-4. Create a JangoPay gateway under Shop → Payment Gateways. Enter verified `USDT:chain,USDC:chain` pairs from your merchant account's payment-assets endpoint. The gateway form shows the webhook URL, normally `/api/shop/payments/jangopay/notification`.
-5. Under `/admin/jangopay/payments`, use the read-only connection test and manual invoice verification tools.
-6. **Fail-closed collection preflight:** `JANGOPAY_ENABLE_PAYMENTS=1`, `JANGOPAY_FINAL_INVOICE_STATUSES`, `JANGOPAY_WEBHOOK_TAG_FORMAT=appended16`, and a readable, valid RSA private key PEM must all be configured before the plugin can create a payable invoice. All settings default to disabled. Set the status and tag format only after authentic contract testing, never by guessing merely to bypass the guard.
+Verified setup: Azuriom 1.2.13, Shop 1.2.25, PHP 8.5.11, SQLite and single-server file sessions/cache. That Azuriom version requires PHP `^8.2`; check your host's requirements before installation.
 
-## Checkout and safety
+## 1. Install the plugin
 
-Shop determines the payable amount. The plugin reserves a Shop payment, stores a separate attempt, and creates a merchant invoice once per checkout reservation. The payment page lets buyers select a permitted chain and receives the **exact cryptocurrency pay amount** and address from JangoPay. A QR renderer is not yet included. Refreshing the page never creates an invoice. A create timeout leaves the result `unknown_creation`; administrator reverify only searches existing invoices and never blindly re-creates them.
+1. Back up your site and database.
+2. [Download v1.0.4](https://github.com/jangopay/jangopay-integrations/raw/refs/heads/main/downloads/jangopay-azuriom-1.0.4.zip).
+3. Extract its contents into `plugins/jangopay/`. The resulting path must be `plugins/jangopay/plugin.json`.
+4. Enable Shop, then JangoPay in Azuriom administration.
 
-Encrypted notifications or an operator-triggered reconciliation must authenticate to merchant APIs, re-check matching invoice/order, USD amount, final status and transaction ownership, then claim fulfillment in the ledger. Shop's built-in `processPayment()` performs delivery. The claim is persisted before calling Shop because external game-server commands cannot be rolled back reliably. Errors enter `delivery_attention`, requiring inspection before any manual remediation.
+The install ZIP has no outer `jangopay/` folder. GitHub's repository ZIP is not the plugin installation package.
 
-Browser redirects, screenshots, transaction broadcasts and public status endpoints never authorize delivery. Existing key material is never sent to the browser; merchant secrets are not stored by this plugin in the Shop gateway record.
+## 2. Connect your merchant account
 
-## Operations
+Create a dedicated API key with invoice creation and order/transaction lookup permissions. The plugin does not need payout or exchange permissions.
 
-- Optional after real integration test: `php artisan jangopay:reconcile --limit=20` via an existing server cron.
-- `quoted` = awaiting payment; `unknown_creation` = manually reconcile the remote invoice; `quote_unknown` = do not repeat quote; `manual_review` = mismatched/unverified payment; `delivery_started` or `delivery_attention` = review possible partial delivery; `delivered` = Shop completed.
-- Back up the database before upgrades; the migration intentionally retains the evidence table on rollback/deactivation. Shop purges pending payments after two weeks; this plugin does not reconstruct already-purged Shop orders.
-- Review `docs/API_CONTRACT.md` and `docs/TEST_REPORT.md` before further testing or publishing to the Azuriom Market.
+Generate an RSA keypair for payment notifications. Keep the private key outside the public web directory and allow only the PHP service account to read it.
 
-## 1.0.2 independent-review fixes and remaining limits
+Configure the following in the actual environment of both the web process and reconciliation commands:
 
-- State-conditional recovery prevents stale unknown-create results from downgrading an ongoing delivery claim. Quote and invoice-creation response handling also use conditional updates.
-- Concurrent first-time session snapshots now derive the same checkout key; Shop database mutations are wrapped in a transaction and unique-key collisions do not create second invoices. A successful checkout rotates the generation for a future, distinct purchase. Real shared-session database stress testing is still needed.
-- Supports Shop's session-bound guest identity with a separate high-entropy payment capability, and snapshots the original asset/network allowlist.
-- Read-only merchant lookups can recover a paid quote with a lost response; an unpaid quote can be restored only if merchant transaction details give a matching invoice, selected asset/chain, address and precise quoted amount. No blind POST retry. Transaction list scan is bounded to three pages / 300 entries.
-- Scheduled reconciliation is fair across pending attempts using `last_checked_at`; local expiry is manual review only.
-- See `docs/CODEX_REVIEW_FIXES_2026-10-14.md`. All regression tests are offline/fake-store checks, **not** real database or merchant integration proof.
+| Setting | Value |
+| --- | --- |
+| `JANGOPAY_API_KEY` | Your site's dedicated merchant API key |
+| `JANGOPAY_RSA_PRIVATE_KEY_PATH` | Absolute path to the RSA private key |
+| `JANGOPAY_FINAL_INVOICE_STATUSES` | `paid` |
+| `JANGOPAY_WEBHOOK_TAG_FORMAT` | `appended16` |
+| `JANGOPAY_ENABLE_PAYMENTS` | Start with `0`; set to `1` when ready to test |
 
-## 1.0.3 session-race correction (Codex second independent recheck)
+These settings are read with `getenv()`. Adding them only to Laravel's `.env` may not expose them to PHP-FPM or scheduled commands; have your administrator verify the running processes.
 
-The 1.0.2 independent reviewer confirmed that a stale losing HTTP request could save an older session after the winning request. This lost the access token, checkout generation and cart-cleared state despite the DB's unique attempt index. 1.0.3 addresses this with **two layers**:
+In JangoPay Console → Developer settings → Callback configuration, register your RSA **public** key and the notification URL shown in the site's JangoPay settings. The usual URL is:
 
-1. The plugin registers a `RouteMatched` listener and enables Laravel `Route::block(120, 45)` on upstream Shop checkout route names `shop.payments.payment`, `shop.payments.pay`, `shop.offers.buy`, and `shop.offers.pay`. Laravel 12 `StartSession` holds this lock until it saves the session. Blocking only a JangoPay-owned page route, or locking solely inside `startPayment()`, would not work.
-2. New payment URL capabilities are derived from a domain-separated HMAC of the checkout key using the host application's strong `APP_KEY`, not saved only under `jangopay_access_*` in the session. This allows a retry with the original session identity and cart to recover the identical pending attempt even if some other unblocked web request overwrote the session. The database stores only the SHA-256 capability hash. Never reveal your APP_KEY or attempt to replicate the HMAC in browser code.
+```text
+https://your-site.example/api/shop/payments/jangopay/notification
+```
 
-**Environment requirements:** use a persistent server-side Laravel session driver (`file`/`database`/`redis` etc.) and a distributed-capable, atomic-locking cache store (`database`, `redis`, etc., or `file` on a single host). `cookie`/`array` session drivers or `array`/`null` lock stores are refused before creating invoices. On multi-server deployments, use a genuinely shared session and lock store; `file` cache on isolated nodes does NOT coordinate locks. If lock acquisition fails, Laravel must abort the request before JangoPay invoices are created. The 120-second lock is longer than normal API call timeouts, but needs verifying with real infrastructure and failure-injection tests.
+Keep the API key and private key out of source control, gateway form fields, screenshots and support reports.
 
-**Upgrade compatibility:** existing 1.0.2 payment attempts use random access tokens; they are accepted without modifying their hashes if the original matching session token is still present. If it was already overwritten and the purchaser has no valid saved checkout URL, do not reset hashes, open the order to anyone, or create another invoice blindly: audit the merchant invoice and manage the order manually. Changing `APP_KEY` invalidates recovery for newly derived capabilities (and has broader Laravel session impacts).
+## 3. Set up the payment method
 
-**Historical 1.0.3 status:** the reports in `docs/SESSION_CONCURRENCY_RECHECK_2026-10-14.md` and `docs/TEST_REPORT.md` describe the earlier simulation stage. For subsequent real-framework and live-payment results, use `docs/LIVE-COMPAT-20261015.md` and the 1.0.4 changelog.
+1. Use USD pricing in Shop.
+2. Add a JangoPay payment gateway under Shop → Payment Gateways.
+3. Configure allowed currencies and networks, such as `USDT:bsc`. Enable a pair only after confirming it is available to your merchant account.
+4. Open `/admin/jangopay/payments` and run **Test API connection (read-only)**.
+
+The connection test checks API access. A real payment is still required to verify notifications and fulfillment.
+
+Use persistent server-side sessions. Cookie/array sessions and array/null lock stores cannot create new JangoPay invoices. Multi-server deployments require shared sessions and locks.
+
+## 4. Test before going live
+
+Enable payment creation for a controlled test order. Follow the exact cryptocurrency amount, network and address shown on the checkout page; do not infer the amount from the USD price.
+
+Verify that the order completes automatically after the first official payment notification, without manually changing its state or using a synthetic notification. Confirm that Shop delivers the intended benefit once, and that duplicate notifications do not deliver it again.
+
+**Version 1.0.4 is awaiting this final acceptance check.** One real USDT/BSC payment has been verified; its fulfillment completed after audited recovery and synthetic callback replay. USDC, other networks, real game-server delivery and production database/multi-server operation remain outside the verified scope. See [validation details](docs/VALIDATION.md).
+
+## Managing payments
+
+Review orders at `/admin/jangopay/payments`.
+
+| Status | Action |
+| --- | --- |
+| `quoted` | Await payment using the displayed instructions. |
+| `delivered` | Check that the customer received the purchased benefit. |
+| `unknown_creation` / `quote_unknown` | Check the existing remote record before attempting another payment. |
+| `manual_review` | Ask your administrator to investigate the payment details. |
+| `delivery_started` / `delivery_attention` | Inspect actual delivery before retrying; fulfillment may have partly completed. |
+
+Your administrator can schedule `php artisan jangopay:reconcile --limit=20` after testing. This queries existing payments and may trigger Shop fulfillment when verification succeeds.
+
+Set `JANGOPAY_ENABLE_PAYMENTS=0` to stop creating new invoices. Existing payments can still be verified and fulfilled. Back up the database before upgrades and retain evidence for pending orders.
+
+## Help
+
+[Changelog](CHANGELOG.md) · [Validation](docs/VALIDATION.md) · [Report an issue](https://github.com/jangopay/jangopay-integrations/issues) · [License](LICENSE)
