@@ -1,0 +1,18 @@
+{
+  "id": "jangopay",
+  "name": "JangoPay",
+  "description": "USDT and USDC invoice payments for Azuriom Shop (integration candidate)",
+  "version": "1.0.4",
+  "url": "https://www.jangopay.org/",
+  "authors": [
+    "JangoPay"
+  ],
+  "azuriom_api": "1.2.0",
+  "providers": [
+    "\\Azuriom\\Plugin\\JangoPay\\Providers\\JangoPayServiceProvider",
+    "\\Azuriom\\Plugin\\JangoPay\\Providers\\RouteServiceProvider"
+  ],
+  "dependencies": {
+    "shop": "^1.2.0"
+  }
+}

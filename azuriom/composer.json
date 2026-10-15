@@ -1,0 +1,8 @@
+{
+  "name": "jangopay/azuriom",
+  "type": "azuriom-plugin",
+  "description": "Server-side JangoPay payment gateway for Azuriom Shop",
+  "license": "MIT",
+  "require": {"php": ">=8.1"},
+  "autoload": {"psr-4": {"Azuriom\\Plugin\\JangoPay\\": "src/"}}
+}
