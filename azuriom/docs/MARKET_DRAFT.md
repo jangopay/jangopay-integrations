@@ -1,17 +1,21 @@
-# Market resource draft (NOT FOR SUBMISSION YET)
+# JangoPay for Azuriom Shop — market listing
 
-Name: **JangoPay for Azuriom Shop**
+[View on Azuriom Market](https://market.azuriom.com/resources/256)
 
-Category: Plugin / Shop payment gateway
+Accept USDT and USDC payments for one-time, USD-priced Azuriom Shop orders. Customers follow payment instructions for the networks enabled by the merchant.
 
-Description draft: "Independent JangoPay stablecoin payments for Azuriom Shop. Enables USD-denominated one-time invoices and USDT/USDC payment instructions for networks supported by your JangoPay merchant account. Built with server-side reconciliation, durable attempt mapping and Shop-native item fulfillment."
+## Features
 
-Dependencies: Shop 1.2.x / Azuriom API 1.2.0 / PHP >= 8.1 (subject to live verification).
+- Azuriom Shop checkout and native fulfillment.
+- Exact cryptocurrency amount, network and receiving address.
+- Authenticated merchant API verification before fulfillment.
+- RSA-OAEP-SHA256 and AES-256-GCM encrypted notifications.
+- Persistent tracking, duplicate-processing protection and administrator reconciliation.
 
-Configuration: merchant server environment API Key; webhook RSA public/private keypair; USD-only Shop; verified stablecoin network allowlist. No subscriptions or automatic refunds.
+## Requirements
 
-Support: contact@jangopay.org — confirm before publication.
+An Azuriom site with Shop and HTTPS, an eligible JangoPay account, PHP OpenSSL support, accessible OpenSSL CLI and `proc_open()`. Use persistent server-side sessions and a cache supporting atomic locks. Follow the PHP requirements of the installed host framework and Shop version.
 
-Screenshots required BEFORE launch: Shop gateway configuration (no secrets), player payment instructions, status pending/paid, administrator reconciliation screen. **No production screenshots captured or invented.**
+Configure the merchant API Key, server-only RSA private key, callback public key, USD pricing and enabled asset/network pairs. Subscriptions, automatic refunds, payouts and exchange are outside the plugin's scope.
 
-Publishing note: Remove all development/release warnings only after the acceptance checklist is actually passed; do not claim official Azuriom approval or authentication of payment notifications without verification.
+[Product overview](../README.md) · [中文介绍](../README.zh-CN.md) · [Installation](../README_EN.md) · [contact@jangopay.org](mailto:contact@jangopay.org)
