@@ -15,7 +15,7 @@
 | 插件 | 版本 | 收款方式 | 使用教程 |
 | --- | --- | --- | --- |
 | [WooCommerce](woocommerce/README.zh-CN.md) | 1.0.2 | USDT / USDC · USD 计价 | [WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) · [安装与配置 →](woocommerce/docs/SETUP.zh-CN.md) |
-| [Azuriom Shop](azuriom/) | 1.0.4 | USDT / USDC · USD 计价 | [安装与配置 →](azuriom/docs/MERCHANT_GUIDE_ZH_CN.md) |
+| [Azuriom Shop](azuriom/README.zh-CN.md) | 1.0.4 | USDT / USDC · USD 计价 | [Azuriom 市场](https://market.azuriom.com/resources/256) · [安装与配置 →](azuriom/docs/MERCHANT_GUIDE_ZH_CN.md) |
 
 可用币种和网络以你的 JangoPay 商户账户为准。
 
