@@ -14,11 +14,14 @@ Accept USDT and USDC payments on your platform with JangoPay.
 
 | Plugin | Version | Payments | Guide |
 | --- | --- | --- | --- |
+| [WooCommerce](woocommerce/) | 1.0.2 | USDT / USDC · USD pricing | [WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) · [Setup →](woocommerce/docs/SETUP.md) |
 | [Azuriom Shop](azuriom/) | 1.0.4 | USDT / USDC · USD pricing | [Installation →](azuriom/README_EN.md) |
 
 Available currencies and networks depend on your JangoPay merchant account.
 
 ## Get started
+
+**WooCommerce merchants:** [Get JangoPay on WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) or [read the merchant setup guide](woocommerce/docs/SETUP.md). The Azuriom steps below apply only to Azuriom stores.
 
 1. [Download the Azuriom plugin](https://github.com/jangopay/jangopay-integrations/raw/refs/heads/main/downloads/jangopay-azuriom-1.0.4.zip).
 2. Extract the ZIP into your site's `plugins/jangopay/` directory.

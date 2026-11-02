@@ -1,0 +1,13 @@
+{
+  "target_library": "phpseclib/phpseclib",
+  "target_version": "4.0.2",
+  "minimum_runtime_php": "8.1",
+  "minimum_build_php": "8.4.1",
+  "private_namespace": "JangoPayWooVendor\\phpseclib4",
+  "build_status": "installed-scoped-and-tested",
+  "test_runtimes": [
+    "8.1.34",
+    "8.5.11"
+  ],
+  "new_real_payments": 0
+}

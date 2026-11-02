@@ -1,0 +1,2 @@
+e4cb2c0c0c64e2922ca30d2e267ca677e797edefbb0438fdb5ec3def476962d8  ../downloads/jangopay-woocommerce-1.0.2.zip
+18b50dcf3c5870829ef716a6f1a5ea713b887387337e187dcc3a8ba100cae4fe  ../downloads/jangopay-woocommerce-1.0.2-source-tests.zip

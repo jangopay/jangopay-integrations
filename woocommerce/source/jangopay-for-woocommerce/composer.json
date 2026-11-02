@@ -1,0 +1,11 @@
+{
+  "name": "jangopay/woocommerce-crypto",
+  "require": {
+    "phpseclib/phpseclib": "4.0.2"
+  },
+  "config": {
+    "platform": {"php": "8.1.0"},
+    "sort-packages": true,
+    "allow-plugins": false
+  }
+}

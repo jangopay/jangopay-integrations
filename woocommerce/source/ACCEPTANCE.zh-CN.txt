@@ -1,0 +1,44 @@
+﻿JangoPay for WooCommerce 1.0.2 — 升级与测试结果
+日期：2026-10-26
+
+一、交付文件
+01-上传WordPress-JangoPay-1.0.2.zip：用于 WordPress.org 提交或站点后台安装。
+02-完整源码与测试-JangoPay-1.0.2.zip：技术交接、审查和重建使用，不作为安装包上传。
+03-升级验收说明-JangoPay-1.0.2.txt：本说明。
+SHA256SUMS.txt：交付文件校验值。
+
+二、实际完成的升级
+实际安装 phpseclib/phpseclib 4.0.2，保留重新生成的 Composer 锁文件和许可证。
+运行时依赖：phpseclib 4.0.2、constant_time_encoding v3.1.3、polyfill-php82 v1.43.0。
+通过 PHP-Scoper 构建私有依赖，修正动态类名和 installed.json 的 PSR-4 映射，重新生成 Composer 自动加载。
+插件 Webhook 明确调用 JangoPayWooVendor\phpseclib4；从最终安装 ZIP 解压后，两种 PHP 实测均加载 4.0.2，旧私有 phpseclib3 和全局 phpseclib4 均未加载。
+版本头、JPWC_VERSION、Stable tag 均为 1.0.2。保留现有托管收银台流程及订单、金额和幂等校验。
+
+三、构建环境与依赖约束
+实际构建使用 PHP 8.5.11、Composer 2.10.3、PHP-Scoper 0.18.20。
+已锁定构建工具依赖要求 PHP >=8.4.1；运行时目标仍为 PHP >=8.1，两者分别验证。
+未使用 --ignore-platform-reqs 或类似绕过方式。Composer audit 未发现安全公告；PHP 8.1.34 上对运行时 lock 执行 check-platform-reqs --lock --no-dev 成功。
+原始依赖、构建工具锁和可重建脚本在完整源码的 build/ 与 upgrade/phpseclib4/ 中；构建说明见 BUILD.md。
+
+四、最终源码回归结果
+PHP 8.1.34：696 步，641 个 PHP 文件语法检查，38 个 PHP 测试脚本，696 个 PASS，0 失败。
+PHP 8.5.11：696 步，641 个 PHP 文件语法检查，38 个 PHP 测试脚本，696 个 PASS，0 失败。
+另行执行 Checkout Blocks 隔离前端断言：16/16 通过。
+
+加密测试使用独立 OpenSSL 生成的 RSA-OAEP-SHA256 密文，实际调用私有 phpseclib4 解密；AES-256-GCM 实际验证认证标签。
+12 项 Webhook 契约断言覆盖正确解密、错误密钥、密文/标签篡改、错误头和格式、SHA-1 OAEP 降级拒绝、禁用进程执行等情形。
+新增 8 项加密到订单集成断言：实际 v4 加载；待支付订单进入 on-hold；篡改通知拒绝；拒绝后不更新订单、不交付、不请求商户核验；正确解密出订单身份；经模拟商户证明核验后成功完成；订单进入 processing 且已支付、账本 completed、交付一次；重复通知不重复交付。
+两种 PHP 均运行相同最终源码。测试使用模拟 WordPress/WooCommerce、账本与商户 HTTP；加密算法和依赖加载是真实执行。
+
+五、证据范围
+validation/final/：最终逐项退出码、断言计数及汇总；PHP 8.5 另保留全部逐项输出。PHP 8.1 最终逐项输出随后被 PHP 8.5 覆盖，保留其逐项结果 JSON 和运行汇总，不将旧输出冒充最终输出。
+validation/initial-build/：补充集成断言前的完整构建回归日志，与最终结果分开标注。
+validation/packaged-runtime-proof.json：从最终 WordPress ZIP 解压后的实际版本和命名空间证据。
+最终上传包通过 CRC、重复路径和逐文件字节一致性检查，不含 build-phar.sh、开发脚本、测试、PO/MO 或目录专用图标。
+未包含商户凭据、站点配置、数据库转储或保留的私钥。
+
+六、使用与验收边界
+已有站点升级前备份数据库和插件文件；在测试站上传 01 安装包，沿用原有安全配置和站点外私钥路径。
+提交 WordPress.org 时使用 01 安装包，完整源码供审核或技术交接。最终是否上架由官方审核决定。
+本轮没有连接正式商户 API、创建真实支付、打开公网入口或执行实际转账。
+本轮未重跑原生 WordPress/WooCommerce 数据库的 HPOS/CPT 并发、浏览器收银台、SMTP、Linux/FPM，也未运行官方 Plugin Check；不能把本轮离线回归表述为新的真实付款验收或官方兼容认证。

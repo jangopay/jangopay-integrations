@@ -14,11 +14,14 @@
 
 | 插件 | 版本 | 收款方式 | 使用教程 |
 | --- | --- | --- | --- |
+| [WooCommerce](woocommerce/README.zh-CN.md) | 1.0.2 | USDT / USDC · USD 计价 | [WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) · [安装与配置 →](woocommerce/docs/SETUP.zh-CN.md) |
 | [Azuriom Shop](azuriom/) | 1.0.4 | USDT / USDC · USD 计价 | [安装与配置 →](azuriom/docs/MERCHANT_GUIDE_ZH_CN.md) |
 
 可用币种和网络以你的 JangoPay 商户账户为准。
 
 ## 开始使用
+
+**WooCommerce 商户：** 从 [WordPress.org 获取 JangoPay 插件](https://wordpress.org/plugins/jangopay-for-woocommerce/)，或查看[商户安装配置指南](woocommerce/docs/SETUP.zh-CN.md)。下方 Azuriom 步骤仅适用于 Azuriom 店铺。
 
 1. [下载 Azuriom 插件安装包](https://github.com/jangopay/jangopay-integrations/raw/refs/heads/main/downloads/jangopay-azuriom-1.0.4.zip)。
 2. 将 ZIP 内容解压到网站的 `plugins/jangopay/` 目录。

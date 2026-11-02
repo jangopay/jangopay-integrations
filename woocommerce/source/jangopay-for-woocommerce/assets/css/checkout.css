@@ -1,0 +1,6 @@
+/* JangoPay buyer status screen (isolated WC-API response). */
+body{font:16px system-ui,sans-serif;background:#f5f6fa;color:#1c2540;padding:22px}
+.jp{max-width:620px;margin:2em auto;background:#fff;border-radius:16px;padding:30px;box-shadow:0 8px 40px #0001}
+h1{font-size:1.6rem}
+button,.action{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:8px;border:0;background:#153c80;color:#fff;font:inherit;text-decoration:none;cursor:pointer}
+.minor{color:#697189}form{margin-top:12px}
