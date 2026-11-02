@@ -55,7 +55,7 @@ For manual installation, extract the [plugin ZIP](../downloads/jangopay-azuriom-
 
 An Azuriom site with Shop and HTTPS, a JangoPay merchant account, PHP OpenSSL support, command-line OpenSSL accessible to PHP, and `proc_open()`. Persistent server-side sessions and a cache with atomic-lock support are required.
 
-The recorded test environment is Azuriom 1.2.13, Shop 1.2.25, PHP 8.5.11 and SQLite on one server. Follow the host framework's PHP requirements and the [detailed deployment guide](README_EN.md) for sessions, locks and secure credentials.
+Follow the host framework's PHP requirements and the [deployment guide](README_EN.md) for sessions, locks and secure credentials.
 
 ## Product resources
 
@@ -66,14 +66,12 @@ The recorded test environment is Azuriom 1.2.13, Shop 1.2.25, PHP 8.5.11 and SQL
 | Setup and operation | [English](README_EN.md) · [中文](README_ZH_CN.md) |
 | Detailed merchant walkthrough | [中文教程](docs/MERCHANT_GUIDE_ZH_CN.md) |
 | Implementation | [Source](src/) · [API contract](docs/API_CONTRACT.md) |
-| Versions and validation | [Changelog](CHANGELOG.md) · [Test scope](docs/VALIDATION.md) |
+| Version history | [Changelog](CHANGELOG.md) |
 | Other JangoPay integrations | [Browse plugins](../README.md) |
 
-## Scope and release status
+## Version and scope
 
 Version **1.0.4** covers one-time USD-priced Shop orders with account-enabled USDT / USDC networks. Subscriptions, automatic refunds, payouts and currency exchange are not included.
-
-The supplied validation record includes one real USDT/BSC payment and fulfillment after controlled recovery and synthetic callback replay. **Final acceptance of a fresh order fulfilling automatically on its first official notification is still pending in the current repository record.** See [validation details](docs/VALIDATION.md) before production use.
 
 <details>
 <summary>Verify the v1.0.4 download</summary>

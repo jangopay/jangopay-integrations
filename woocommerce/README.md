@@ -64,10 +64,10 @@ Requires HTTPS, WordPress 6.4+, WooCommerce 8.3+, PHP 8.1+ with PHP OpenSSL, and
 | :--- | :--- |
 | Official WordPress plugin directory | [WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) |
 | Version 1.0.2 WordPress-installable ZIP | [Download](../downloads/jangopay-woocommerce-1.0.2.zip) |
-| Complete source, runtime dependencies, build files and all test evidence | [Full source bundle](../downloads/jangopay-woocommerce-1.0.2-source-tests.zip) |
+| Complete source, runtime dependencies and build files | [Full source bundle](../downloads/jangopay-woocommerce-1.0.2-source-tests.zip) |
 | Browse core implementation and tests | [Source](source/) |
 | Merchant setup and operation | [English](docs/SETUP.md) · [中文](docs/SETUP.zh-CN.md) |
-| Architecture, API contract, build and validation | [English](docs/TECHNICAL.md) · [中文](docs/TECHNICAL.zh-CN.md) |
+| Architecture, API contract and build | [English](docs/TECHNICAL.md) · [中文](docs/TECHNICAL.zh-CN.md) |
 | Package verification | [SHA256SUMS.txt](SHA256SUMS.txt) |
 
 Use the install ZIP in WordPress. The entire GitHub repository ZIP and full development bundle are not WordPress-installable packages.

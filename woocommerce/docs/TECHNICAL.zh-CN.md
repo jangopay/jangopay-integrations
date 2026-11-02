@@ -19,7 +19,7 @@
 | `source/build/` | 原始依赖与构建工具的 Composer 锁文件 |
 | `source/upgrade/phpseclib4/` | 隔离构建、命名空间修正和打包脚本 |
 
-在线目录保留核心源码、测试及构建输入。**完整开发交付的 vendor 与全部 validation 日志位于[原始完整源码包](../../downloads/jangopay-woocommerce-1.0.2-source-tests.zip)**，没有以网页目录替代或重新生成原包。安装包另行提供，运行依赖已随包附带。
+在线目录保留核心源码、测试及构建输入。**完整开发交付的 vendor 位于[原始完整源码包](../../downloads/jangopay-woocommerce-1.0.2-source-tests.zip)**，没有以网页目录替代或重新生成原包。安装包另行提供，运行依赖已随包附带。
 
 ## 接口与订单核验
 
@@ -40,14 +40,6 @@
 商户运行时要求 PHP ≥8.1；锁定的构建工具要求 PHP ≥8.4.1。不要在插件已隔离的 vendor 目录直接执行 Composer install。按 [BUILD.md](../source/BUILD.md) 在独立构建目录重建，保留原始锁文件、私有命名空间和许可证。
 
 运行依赖：phpseclib 4.0.2、constant_time_encoding v3.1.3、polyfill-php82 v1.43.0。插件 GPL-2.0-or-later，第三方依赖保留 MIT 声明，见 [NOTICES](../source/jangopay-for-woocommerce/NOTICES.txt)。
-
-## 随包测试证据
-
-交付说明记录：PHP 8.1.34 与 PHP 8.5.11 分别完成 696 步回归，641 个 PHP 文件语法检查、38 个 PHP 测试脚本，0 失败；另有 Checkout Blocks 16/16 断言。原始汇总与逐项证据保存在完整源码包 `validation/`。
-
-这些是交付包提供的历史本地测试结果，不是本次 GitHub 发布重新执行的线上验收。测试真实执行加密算法和依赖加载，WordPress/WooCommerce、账本与商户 HTTP 使用模拟环境。原说明列出的浏览器、原生数据库并发、SMTP、Linux/FPM、官方 Plugin Check 与真实付款没有在该轮重跑。
-
-[阅读原始验收说明](../source/ACCEPTANCE.zh-CN.txt) · [包校验](../SHA256SUMS.txt)
 
 ## 维护与支持
 

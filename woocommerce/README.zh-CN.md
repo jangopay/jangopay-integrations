@@ -64,10 +64,10 @@
 | :--- | :--- |
 | WordPress 官方插件目录 | [WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) |
 | 直接上传 WordPress 的 1.0.2 安装包 | [下载 ZIP](../downloads/jangopay-woocommerce-1.0.2.zip) |
-| 完整源码、运行依赖、构建文件及全部测试证据 | [下载完整源码包](../downloads/jangopay-woocommerce-1.0.2-source-tests.zip) |
+| 完整源码、运行依赖及构建文件 | [下载完整源码包](../downloads/jangopay-woocommerce-1.0.2-source-tests.zip) |
 | 在线阅读核心源码与测试 | [浏览源码](source/) |
 | 商户配置与操作 | [中文](docs/SETUP.zh-CN.md) · [English](docs/SETUP.md) |
-| 技术架构、接口、构建与测试说明 | [中文](docs/TECHNICAL.zh-CN.md) · [English](docs/TECHNICAL.md) |
+| 技术架构、接口与构建说明 | [中文](docs/TECHNICAL.zh-CN.md) · [English](docs/TECHNICAL.md) |
 | 包校验 | [SHA256SUMS.txt](SHA256SUMS.txt) |
 
 安装请使用安装包；GitHub 的整个仓库 ZIP 和完整源码测试包都不是 WordPress 后台安装包。

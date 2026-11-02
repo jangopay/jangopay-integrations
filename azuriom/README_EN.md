@@ -12,7 +12,7 @@ Accept USDT and USDC for one-time, USD-priced orders in Azuriom Shop.
 - OpenSSL CLI available to PHP, with `proc_open()` permitted.
 - Persistent server-side sessions and a cache store that supports atomic locks.
 
-Verified setup: Azuriom 1.2.13, Shop 1.2.25, PHP 8.5.11, SQLite and single-server file sessions/cache. That Azuriom version requires PHP `^8.2`; check your host's requirements before installation.
+Use PHP and extensions that meet your installed Azuriom and Shop versions' requirements.
 
 ## 1. Install the plugin
 
@@ -66,8 +66,6 @@ Enable payment creation for a controlled test order. Follow the exact cryptocurr
 
 Verify that the order completes automatically after the first official payment notification, without manually changing its state or using a synthetic notification. Confirm that Shop delivers the intended benefit once, and that duplicate notifications do not deliver it again.
 
-**Version 1.0.4 is awaiting this final acceptance check.** One real USDT/BSC payment has been verified; its fulfillment completed after audited recovery and synthetic callback replay. USDC, other networks, real game-server delivery and production database/multi-server operation remain outside the verified scope. See [validation details](docs/VALIDATION.md).
-
 ## Managing payments
 
 Review orders at `/admin/jangopay/payments`.
@@ -86,4 +84,4 @@ Set `JANGOPAY_ENABLE_PAYMENTS=0` to stop creating new invoices. Existing payment
 
 ## Help
 
-[Changelog](CHANGELOG.md) · [Validation](docs/VALIDATION.md) · [Report an issue](https://github.com/jangopay/jangopay-integrations/issues) · [License](LICENSE)
+[Changelog](CHANGELOG.md) · [Report an issue](https://github.com/jangopay/jangopay-integrations/issues) · [License](LICENSE)

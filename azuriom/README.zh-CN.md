@@ -55,7 +55,7 @@ flowchart LR
 
 需要已安装 Shop 的 Azuriom 网站、HTTPS、JangoPay 商户账户、PHP OpenSSL、PHP 可调用的命令行 OpenSSL，以及 `proc_open()`。Session 需在服务端持久化，缓存需支持原子锁。
 
-记录中的测试环境为 Azuriom 1.2.13、Shop 1.2.25、PHP 8.5.11、SQLite 单机。部署须满足宿主框架的 PHP 要求；会话、锁、密钥和回调配置见[详细商户教程](docs/MERCHANT_GUIDE_ZH_CN.md)。
+部署须满足宿主框架的 PHP 要求；会话、锁、密钥和回调配置见[详细商户教程](docs/MERCHANT_GUIDE_ZH_CN.md)。
 
 ## 下载与资料
 
@@ -66,14 +66,12 @@ flowchart LR
 | 安装与日常操作 | [中文](README_ZH_CN.md) · [English](README_EN.md) |
 | 分步商户教程 | [完整中文教程](docs/MERCHANT_GUIDE_ZH_CN.md) |
 | 技术实现 | [源码](src/) · [接口契约](docs/API_CONTRACT.md) |
-| 版本与验证 | [更新记录](CHANGELOG.md) · [测试范围](docs/VALIDATION.md) |
+| 版本更新 | [更新记录](CHANGELOG.md) |
 | 其他 JangoPay 插件 | [查看插件目录](../README.zh-CN.md) |
 
-## 适用范围与发布状态
+## 版本与适用范围
 
 当前版本 **1.0.4** 用于账户已开通 USDT / USDC 网络上的一次性 USD 订单。不包含订阅、自动退款、出款或币种兑换。
-
-现有验收记录包括一笔真实 USDT/BSC 支付，以及受控恢复和合成通知重放后的交付。**仓库当前仍记录“全新订单收到首次官方通知后自动履约”待最终验收**；生产使用前请阅读[测试与验收说明](docs/VALIDATION.md)。
 
 <details>
 <summary>校验 1.0.4 安装包</summary>

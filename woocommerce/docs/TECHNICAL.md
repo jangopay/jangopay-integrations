@@ -19,7 +19,7 @@ Supports classic checkout, Checkout Blocks, CPT and HPOS. Declared minimums are 
 | `source/build/` | Original runtime/build dependency locks |
 | `source/upgrade/phpseclib4/` | Isolated build and namespace correction |
 
-Browsable files include core implementation, tests and build inputs. **The complete delivered vendor tree and all validation logs remain in the [original full-source bundle](../../downloads/jangopay-woocommerce-1.0.2-source-tests.zip).** The archive is preserved as supplied. The separate WordPress installation ZIP bundles its runtime dependencies.
+Browsable files include core implementation, tests and build inputs. **The complete delivered vendor tree is included in the [original full-source bundle](../../downloads/jangopay-woocommerce-1.0.2-source-tests.zip).** The archive is preserved as supplied. The separate WordPress installation ZIP bundles its runtime dependencies.
 
 ## API and fulfillment proof
 
@@ -40,14 +40,6 @@ Version 1.0.2 bundles phpseclib 4.0.2 under the private `JangoPayWooVendor\\phps
 Merchant runtime requires PHP ≥8.1. The locked build toolchain requires PHP ≥8.4.1. Do not run Composer install over the plugin's scoped vendor directory. Follow [BUILD.md](../source/BUILD.md) for an isolated rebuild, retaining lock files, namespace isolation and notices.
 
 Runtime dependencies: phpseclib 4.0.2, constant_time_encoding v3.1.3 and polyfill-php82 v1.43.0. The plugin is GPL-2.0-or-later and dependencies retain MIT notices; see [NOTICES](../source/jangopay-for-woocommerce/NOTICES.txt).
-
-## Supplied validation evidence
-
-The delivery report records 696 regression steps on each of PHP 8.1.34 and PHP 8.5.11: 641 PHP syntax checks, 38 test scripts and zero failures, plus 16/16 Checkout Blocks assertions. Original evidence is in the complete bundle's `validation/` directory.
-
-These are historical delivery results, not a newly executed production acceptance during GitHub publication. Cryptography and dependency loading were executed; WordPress/WooCommerce, ledger and merchant HTTP used simulated fixtures. Browser checkout, native database concurrency, SMTP, Linux/FPM, official Plugin Check and real payment acceptance were not rerun in that round.
-
-[Original acceptance report](../source/ACCEPTANCE.zh-CN.txt) · [Package checksums](../SHA256SUMS.txt)
 
 ## Maintenance
 

@@ -21,30 +21,17 @@
 
 ## 开始使用
 
-**WooCommerce 商户：** 从 [WordPress.org 获取 JangoPay 插件](https://wordpress.org/plugins/jangopay-for-woocommerce/)，或查看[商户安装配置指南](woocommerce/docs/SETUP.zh-CN.md)。下方 Azuriom 步骤仅适用于 Azuriom 店铺。
+根据你的网站平台选择 JangoPay 插件：
 
-1. [下载 Azuriom 插件安装包](https://github.com/jangopay/jangopay-integrations/raw/refs/heads/main/downloads/jangopay-azuriom-1.0.4.zip)。
-2. 将 ZIP 内容解压到网站的 `plugins/jangopay/` 目录。
-3. 按照[商户操作教程](azuriom/docs/MERCHANT_GUIDE_ZH_CN.md)连接商户账户，并完成一笔实付测试。
+- **WooCommerce**：[前往 WordPress.org 获取插件](https://wordpress.org/plugins/jangopay-for-woocommerce/) · [产品介绍](woocommerce/README.zh-CN.md) · [安装配置](woocommerce/docs/SETUP.zh-CN.md)。
+- **Azuriom Shop**：[前往 Azuriom 市场获取插件](https://market.azuriom.com/resources/256) · [产品介绍](azuriom/README.zh-CN.md) · [安装配置](azuriom/README_ZH_CN.md)。
 
-安装时请使用插件 ZIP。GitHub 的 **Download ZIP** 下载的是整个仓库。
-
-> **上线前验收：** Azuriom 1.0.4 尚待最终验收。请确认全新订单收到首次官方付款通知后，能自动完成发货。详见[测试与验收说明](azuriom/docs/VALIDATION.md)。
-
-<details>
-<summary>校验安装包</summary>
-
-`jangopay-azuriom-1.0.4.zip` 的 SHA-256：
-
-```text
-10BCDC245302F7068CF26256DA7CB88EF16EC930CE73B26C07D6942A9F2B6054
-```
-
-</details>
+具体安装步骤、运行要求与使用说明，请查看对应插件文档。手动安装请使用对应插件安装包；GitHub 的 **Download ZIP** 下载的是整个仓库。
 
 ## 帮助与更新
 
 - [问题反馈](https://github.com/jangopay/jangopay-integrations/issues)：请注明平台与插件版本，不要提交 API Key、私钥或密码。
+- [WooCommerce 更新记录](woocommerce/source/jangopay-for-woocommerce/CHANGELOG.md)：查看版本变化。
 - [Azuriom 更新记录](azuriom/CHANGELOG.md)：查看版本变化。
 
 ## 许可证

@@ -21,30 +21,17 @@ Available currencies and networks depend on your JangoPay merchant account.
 
 ## Get started
 
-**WooCommerce merchants:** [Get JangoPay on WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) or [read the merchant setup guide](woocommerce/docs/SETUP.md). The Azuriom steps below apply only to Azuriom stores.
+Choose the JangoPay plugin for your platform:
 
-1. [Download the Azuriom plugin](https://github.com/jangopay/jangopay-integrations/raw/refs/heads/main/downloads/jangopay-azuriom-1.0.4.zip).
-2. Extract the ZIP into your site's `plugins/jangopay/` directory.
-3. Follow the [installation guide](azuriom/README_EN.md) to connect your merchant account and test a payment.
+- **WooCommerce**: [Get it on WordPress.org](https://wordpress.org/plugins/jangopay-for-woocommerce/) · [Product overview](woocommerce/) · [Setup guide](woocommerce/docs/SETUP.md).
+- **Azuriom Shop**: [Get it on Azuriom Market](https://market.azuriom.com/resources/256) · [Product overview](azuriom/) · [Setup guide](azuriom/README_EN.md).
 
-Use the plugin ZIP for installation. GitHub's **Download ZIP** contains the entire repository.
-
-> **Before going live:** Final acceptance for Azuriom 1.0.4 is pending. Verify that a new order is fulfilled automatically after the first official payment notification. See [validation details](azuriom/docs/VALIDATION.md).
-
-<details>
-<summary>Verify your download</summary>
-
-SHA-256 of `jangopay-azuriom-1.0.4.zip`:
-
-```text
-10BCDC245302F7068CF26256DA7CB88EF16EC930CE73B26C07D6942A9F2B6054
-```
-
-</details>
+See each plugin's documentation for installation, requirements and operation. For manual installation, use the matching plugin package; GitHub's **Download ZIP** contains the entire repository.
 
 ## Help & updates
 
 - [Report an issue](https://github.com/jangopay/jangopay-integrations/issues) — include your platform and plugin version. Keep API keys, private keys and passwords out of reports.
+- [WooCommerce changelog](woocommerce/source/jangopay-for-woocommerce/CHANGELOG.md) — version history and changes.
 - [Azuriom changelog](azuriom/CHANGELOG.md) — version history and changes.
 
 ## License
